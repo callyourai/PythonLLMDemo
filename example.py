@@ -8,8 +8,8 @@ def create_consumer():
         'auto.offset.reset': 'earliest',        # Start reading at the beginning if no offset is present
         'sasl.mechanisms': 'PLAIN',             # SASL mechanism
         'security.protocol': 'SASL_PLAINTEXT',  # Security protocol
-        'sasl.username': '<username>',       # Replace with your username
-        'sasl.password': '<password>'        # Replace with your password
+        'sasl.username': 'llmservice_user',       # Replace with your username
+        'sasl.password': '22b389f67b25426775e74b2a00bcd91a'        # Replace with your password
     }
     return Consumer(consumer_conf)
 
