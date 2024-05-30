@@ -1,29 +1,7 @@
-class Language: 
-  def __init__(self, input):
-    if hasattr(input, 'locale'):
-    	self._locale = input.locale
-    if hasattr(input, 'probability'):
-    	self._probability = input.probability
-    if hasattr(input, 'additionalProperties'):
-    	self._additionalProperties = input.additionalProperties
+from pydantic import BaseModel, Field
+from typing import Optional, Dict, Any
 
-  @property
-  def locale(self):
-  	return self._locale
-  @locale.setter
-  def locale(self, locale):
-  	self._locale = locale
-
-  @property
-  def probability(self):
-  	return self._probability
-  @probability.setter
-  def probability(self, probability):
-  	self._probability = probability
-
-  @property
-  def additionalProperties(self):
-  	return self._additionalProperties
-  @additionalProperties.setter
-  def additionalProperties(self, additionalProperties):
-  	self._additionalProperties = additionalProperties
+class Language(BaseModel):
+    locale: Optional[str] = Field(default=None, description="Language locale.")
+    probability: Optional[float] = Field(default=None, description="Probability of language.")
+    additionalProperties: Optional[Dict[Any, Any]] = Field(default=None)

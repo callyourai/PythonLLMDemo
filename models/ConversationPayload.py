@@ -1,56 +1,11 @@
-class ConversationPayload: 
-  def __init__(self, input):
-    if hasattr(input, 'id'):
-    	self._id = input.id
-    if hasattr(input, 'started'):
-    	self._started = input.started
-    if hasattr(input, 'userId'):
-    	self._userId = input.userId
-    if hasattr(input, 'agentId'):
-    	self._agentId = input.agentId
-    if hasattr(input, 'messages'):
-    	self._messages = input.messages
-    if hasattr(input, 'additionalProperties'):
-    	self._additionalProperties = input.additionalProperties
+from pydantic import BaseModel, Field
+from typing import Optional, List, Dict, Any
+from models.MessagePayload import MessagePayload
 
-  @property
-  def id(self):
-  	return self._id
-  @id.setter
-  def id(self, id):
-  	self._id = id
-
-  @property
-  def started(self):
-  	return self._started
-  @started.setter
-  def started(self, started):
-  	self._started = started
-
-  @property
-  def userId(self):
-  	return self._userId
-  @userId.setter
-  def userId(self, userId):
-  	self._userId = userId
-
-  @property
-  def agentId(self):
-  	return self._agentId
-  @agentId.setter
-  def agentId(self, agentId):
-  	self._agentId = agentId
-
-  @property
-  def messages(self):
-  	return self._messages
-  @messages.setter
-  def messages(self, messages):
-  	self._messages = messages
-
-  @property
-  def additionalProperties(self):
-  	return self._additionalProperties
-  @additionalProperties.setter
-  def additionalProperties(self, additionalProperties):
-  	self._additionalProperties = additionalProperties
+class ConversationPayload(BaseModel):
+    id: Optional[str] = Field(default=None, description="Unique identifier for the conversation.")
+    started: Optional[float] = Field(default=None, description="Timestamp when the conversation started.")
+    userId: Optional[str] = Field(default=None, description="Unique identifier of the user holding the conversation.")
+    agentId: Optional[str] = Field(default=None, description="Unique identifier of the agent of the conversation.")
+    messages: Optional[List[MessagePayload]] = Field(default=None, description="List of messages in the conversation.")
+    additionalProperties: Optional[Dict[Any, Any]] = Field(default=None)
